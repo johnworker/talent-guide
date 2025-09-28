@@ -1,0 +1,27 @@
+/* 1) 先載入 Tailwind 三層 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 2) 再載入你自訂的樣式（可放最上或這裡都行）*/
+@import './styles/prose.css';
+
+/* 3) 你的自訂 components 層 */
+@layer components {
+  .container { @apply mx-auto w-full max-w-6xl px-4; }
+  .section { @apply container py-14 md:py-20; }
+  .headline { @apply text-3xl md:text-4xl font-bold tracking-tight; }
+  .subhead { @apply mt-2 text-slate-600; }
+  .glass { @apply backdrop-blur bg-white/70 shadow-soft rounded-2xl; }
+
+  /* 常用元件 */
+  .btn { @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 font-medium shadow-sm transition hover:opacity-90; }
+  .btn-primary { @apply btn bg-primary text-white; }
+  .btn-outline { @apply btn border border-slate-300 bg-white text-ink; }
+  .card { @apply rounded-2xl bg-white/70 shadow p-5; }
+  .page { @apply mx-auto w-full max-w-6xl px-4 py-10; }
+}
+
+/* 4)（可選）微互動效果 */
+.card { transition: transform .18s ease, box-shadow .18s ease; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 18px 50px -20px rgb(2 6 23 / .25) }

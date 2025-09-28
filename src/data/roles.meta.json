@@ -1,0 +1,66 @@
+[
+  {
+    "id": "supporter",
+    "missions": ["客服/社群維運", "Onboarding 指導", "FAQ 知識庫維護"],
+    "metrics": ["CSAT(滿意度)", "首次回覆時間", "留存率"],
+    "skills": ["同理溝通", "流程設計", "衝突處理"],
+    "tools": ["Zendesk", "Notion", "Canny"],
+    "paths": ["客服 ➜ 社群經理", "社群經理 ➜ 產品營運", "維運 ➜ 客訴改善 PM"]
+  },
+  {
+    "id": "accumulator",
+    "missions": ["資源與預算管理", "流程與 SOP 制定", "指標儀表板維護"],
+    "metrics": ["成本/收入比", "週期時間", "產能利用率"],
+    "skills": ["數據分析", "排程規劃", "風險控管"],
+    "tools": ["Airtable", "Looker Studio", "Notion"],
+    "paths": ["營運 ➜ 財務/採購", "PMO ➜ 企業流程顧問"]
+  },
+  {
+    "id": "landlord",
+    "missions": ["資產配置/授權管理", "平台治理", "租賃/抽成方案"],
+    "metrics": ["可用率", "佔用率", "MRR/ARR"],
+    "skills": ["合約與授權", "資產盤點", "平台治理"],
+    "tools": ["GWS/Office", "License Manager", "Stripe"],
+    "paths": ["資產管理 ➜ 平台營運", "法務助理 ➜ 授權經理"]
+  },
+  {
+    "id": "technician",
+    "missions": ["系統維運/自動化", "品質保證", "事故處理/復盤"],
+    "metrics": ["故障率", "MTTR/MTBF", "部署頻率"],
+    "skills": ["觀測性(Logging/Tracing)", "自動化腳本", "SLA/SLO 設計"],
+    "tools": ["Docker", "Grafana", "GitHub Actions"],
+    "paths": ["維運工程師 ➜ SRE", "QA ➜ 測試自動化"]
+  },
+  {
+    "id": "merchant",
+    "missions": ["漏斗設計", "定價與促銷", "轉化追蹤/AB 測試"],
+    "metrics": ["CVR", "CAC/LTV", "ARPU"],
+    "skills": ["談判/話術", "數據化行銷", "渠道策略"],
+    "tools": ["GA4", "Looker", "Hotjar"],
+    "paths": ["BD ➜ 業務/商務開發", "Growth ➜ 產品營運"]
+  },
+  {
+    "id": "creator",
+    "missions": ["內容產出/版型", "品牌敘事", "多平台再利用"],
+    "metrics": ["曝光/互動", "週產量", "完讀率"],
+    "skills": ["寫作/設計", "資訊架構", "多媒體剪輯"],
+    "tools": ["Figma", "CapCut", "Notion"],
+    "paths": ["內容編輯 ➜ 品牌設計", "自媒體 ➜ 內容 PM"]
+  },
+  {
+    "id": "star",
+    "missions": ["公開演說/主持", "活動帶動", "形象溝通"],
+    "metrics": ["出席/觸及", "活動滿意度", "品牌聲量"],
+    "skills": ["台風/表達", "臨場反應", "社群互動"],
+    "tools": ["OBS", "Keynote", "Twitter/X"],
+    "paths": ["講師/主持 ➜ 品牌大使", "KOL ➜ 社群總監"]
+  },
+  {
+    "id": "matchmaker",
+    "missions": ["夥伴開發/媒合", "資源盤點/整合", "跨部門協作"],
+    "metrics": ["合作數", "成交率", "案源週期"],
+    "skills": ["人脈經營", "提案簡報", "跨域協作"],
+    "tools": ["HubSpot", "Notion CRM", "Slack"],
+    "paths": ["BD ➜ 聯盟行銷", "顧問 ➜ 事業發展"]
+  }
+]

@@ -1,0 +1,5 @@
+.prose h1{ @apply text-3xl font-bold; }
+.prose h2{ @apply mt-8 mb-2 text-xl font-semibold; }
+.prose p{ @apply leading-7 text-slate-700; }
+.prose img{ @apply rounded-2xl shadow-soft; }
+.prose blockquote{ @apply border-l-4 border-primary/40 pl-4 italic text-slate-600; }

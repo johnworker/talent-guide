@@ -1,0 +1,74 @@
+[
+  {
+    "id": "g-1",
+    "title": "創作者一日產出：從題庫到發佈的 6 個節點",
+    "content": "<h2>流程</h2><ol><li>題庫收斂</li><li>大綱</li><li>初稿</li><li>審稿</li><li>設計排版</li><li>發布/再利用</li></ol>",
+    "roleIds": ["creator"],
+    "tags": ["內容產出","流程"],
+    "views": 128,
+    "likes": 9,
+    "author": { "name": "Demo" },
+    "createdAt": 1719820000000,
+    "updatedAt": 1719820000000
+  },
+  {
+    "id": "g-2",
+    "title": "商人：漏斗轉化 18 點檢核清單（含模板）",
+    "content": "<ul><li>首頁價值主張</li><li>CTA 清晰</li><li>信任錨點</li></ul>",
+    "roleIds": ["merchant"],
+    "tags": ["轉化","定價","漏斗"],
+    "views": 220,
+    "likes": 17,
+    "author": { "name": "Demo" },
+    "createdAt": 1719821000000,
+    "updatedAt": 1719821000000
+  },
+  {
+    "id": "g-3",
+    "title": "支持者：Top10 FAQ 建置與回覆話術庫",
+    "content": "<p>將常見問題轉為可複用話術與知識庫。</p>",
+    "roleIds": ["supporter"],
+    "tags": ["客服","SOP","知識庫"],
+    "views": 86,
+    "likes": 6,
+    "author": { "name": "Demo" },
+    "createdAt": 1719822000000,
+    "updatedAt": 1719822000000
+  },
+  {
+    "id": "g-4",
+    "title": "技師：P95 延遲壓到 200ms 的 7 個實作",
+    "content": "<p>從 APM、快取、索引、壓縮、CDN、連線池、併發調整著手。</p>",
+    "roleIds": ["technician"],
+    "tags": ["效能","SLA","監控"],
+    "views": 310,
+    "likes": 28,
+    "author": { "name": "Demo" },
+    "createdAt": 1719823000000,
+    "updatedAt": 1719823000000
+  },
+  {
+    "id": "g-5",
+    "title": "媒合者：Top50 夥伴分級與共創流程",
+    "content": "<p>夥伴地圖、分級標準、共創腳本與跟進節點。</p>",
+    "roleIds": ["matchmaker","merchant"],
+    "tags": ["BD","夥伴","流程"],
+    "views": 150,
+    "likes": 11,
+    "author": { "name": "Demo" },
+    "createdAt": 1719824000000,
+    "updatedAt": 1719824000000
+  },
+  {
+    "id": "g-6",
+    "title": "地主：資產分級與投報盤點（表單模板）",
+    "content": "<p>用分級與回收期紅線做資產決策。</p>",
+    "roleIds": ["landlord","accumulator"],
+    "tags": ["資產","決策","財務"],
+    "views": 97,
+    "likes": 7,
+    "author": { "name": "Demo" },
+    "createdAt": 1719825000000,
+    "updatedAt": 1719825000000
+  }
+]

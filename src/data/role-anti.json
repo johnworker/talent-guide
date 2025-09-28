@@ -1,0 +1,174 @@
+[
+  {
+    "role":"supporter",
+    "scenes":[
+      { "title":"過度承擔，邊界消失",
+        "signals":["無法拒絕","加班救火","需求膨脹"],
+        "antidotes":["用表單收斂需求與優先級","SOP 設定處理時限/責任人","拒絕話術模板"],
+        "quickWins":["本週啟用需求表單","建立 3 句拒絕話術"],
+        "metrics":["工單等待時間","跨部門升級率"],
+        "resources":["見指南：客服分級與升級規則"] },
+      { "title":"情緒勞動過高",
+        "signals":["被抱怨消耗","同理疲乏"],
+        "antidotes":["輪值轉單二線","導入 FAQ 與自助指引","以數據回應主觀抱怨"],
+        "quickWins":["Top10 FAQ","升級規則"],
+        "metrics":["自助解決率","一次解決率"],
+        "resources":["見指南：自助服務與回饋機制"] },
+      { "title":"服務與營收脫節",
+        "signals":["滿意度高但不轉化"],
+        "antidotes":["與商人共定服務型 CTA","追蹤服務→留存/推薦指標"],
+        "quickWins":["票單加 CTA","Dashboard 加留存"],
+        "metrics":["回購率","推薦數"],
+        "resources":["見指南：售後到轉化"] },
+      { "title":"回覆品質不一致",
+        "signals":["同題不同答","新手上線慢"],
+        "antidotes":["話術庫與範例回覆","審核與抽查制度"],
+        "quickWins":["建立 20 條回覆樣板","每週抽查 5 筆"],
+        "metrics":["一次解決率","客訴率"],
+        "resources":["見指南：話術庫建置"] },
+      { "title":"回饋無法轉成改進",
+        "signals":["收集很多但無行動","同問題重複"],
+        "antidotes":["建立回饋→任務流水線","月度回饋回顧會"],
+        "quickWins":["看板化回饋","每月 30 分檢討"],
+        "metrics":["重複問題佔比","回饋處理週期"],
+        "resources":["見指南：回饋閉環"] }
+    ]
+  },
+  {
+    "role":"merchant",
+    "scenes":[
+      { "title":"追營收忽略體驗",
+        "signals":["流失上升","退單多"],
+        "antidotes":["與支持者共設售後手冊","體驗 KPI 納入獎懲"],
+        "quickWins":["成交後 7 天關懷","NPS 調查"],
+        "metrics":["退貨率","NPS","30 日留存"],
+        "resources":["見指南：體驗驅動成長"] },
+      { "title":"拍腦袋定價",
+        "signals":["價格矛盾","促銷過多"],
+        "antidotes":["毛利模型化","A/B 定價測試"],
+        "quickWins":["建立毛利表","兩版定價實驗"],
+        "metrics":["毛利率","CVR","ARPU"],
+        "resources":["見指南：定價策略實操"] },
+      { "title":"只衝短期漏斗",
+        "signals":["廣告依賴","自然流量弱"],
+        "antidotes":["與創作者做內容 SEO","與地主做資產化方案"],
+        "quickWins":["本月 3 篇轉化文","UTM 命名規範"],
+        "metrics":["自然流","品牌搜尋量"],
+        "resources":["見指南：內容增長飛輪"] },
+      { "title":"跟單失速",
+        "signals":["洽談後無回","節點遺失"],
+        "antidotes":["管線化 MQL→SQL→成交","節點責任人與時限"],
+        "quickWins":["CRM 分層與提醒","週會檢核前 10 單"],
+        "metrics":["管線轉換率","平均成交天數"],
+        "resources":["見指南：銷售管線與節點設計"] },
+      { "title":"合作條件不透明",
+        "signals":["案案重談","對外口徑不一"],
+        "antidotes":["公開價目與標準方案","異動需公告"],
+        "quickWins":["方案白皮書","常見問題清單"],
+        "metrics":["報價週期","議價次數"],
+        "resources":["見指南：商務條款樣板"] }
+    ]
+  },
+  {
+    "role": "creator",
+    "scenes": [
+      { "title": "靈感依賴，輸出不穩",
+        "signals": ["拖稿","品質忽高忽低"],
+        "antidotes": ["建立題庫與版型","固定節奏與檢核表"],
+        "quickWins": ["建立 20 題庫","每篇套模板"] },
+      { "title": "與商業目標脫節",
+        "signals": ["好看但不轉化"],
+        "antidotes": ["與商人共定 CTA/測試點","引入行銷事件日曆"],
+        "quickWins": ["每文加入 CTA","排下月行銷節點"] },
+      { "title": "過度個人化難擴張",
+        "signals": ["只能我做","交接困難"],
+        "antidotes": ["素材庫/字體色票標準化","模組化設計"],
+        "quickWins": ["上傳素材到雲端","建立 Figma 樣板"] }
+    ]
+  },
+  {
+    "role": "technician",
+    "scenes": [
+      { "title": "過度追求完美",
+        "signals": ["過度優化","延期"],
+        "antidotes": ["定義可交付 MLP/SLAs","以數據衡量 ROI"],
+        "quickWins": ["列出 MLP 清單","看板加上 SLA"] },
+      { "title": "與需求脫節",
+        "signals": ["造輪子","技術驅動"],
+        "antidotes": ["每週與支持者/商人梳理票單","建立需求評審會"],
+        "quickWins": ["週會 30 分鐘票單梳理","評審模板"] },
+      { "title": "知識孤島",
+        "signals": ["只有某人會修","夜間被 call"],
+        "antidotes": ["Runbook/值班輪值","自動化告警/復原"],
+        "quickWins": ["寫 3 篇 Runbook","導入告警規則"] }
+    ]
+  },
+  {
+    "role": "landlord",
+    "scenes": [
+      { "title": "保守拖慢創新",
+        "signals": ["新需求被擋","只顧穩定"],
+        "antidotes": ["撥出實驗資源池","與商人評估 PMF"],
+        "quickWins": ["建立 10% 實驗池","月度檢討"] },
+      { "title": "資產閒置",
+        "signals": ["低利用率","成本偏高"],
+        "antidotes": ["與媒合者開放外部利用","分級定價/租賃"],
+        "quickWins": ["列資產清單","試辦外部租用"] },
+      { "title": "治理複雜拖慢進度",
+        "signals": ["流程層層","決策慢"],
+        "antidotes": ["授權矩陣","小組自治"],
+        "quickWins": ["定義 RACI","設小組 KPI"] }
+    ]
+  },
+  {
+    "role": "accumulator",
+    "scenes": [
+      { "title": "過度節流抑制成長",
+        "signals": ["推案都被砍","士氣低落"],
+        "antidotes": ["訂成長與毛利雙指標","小額實驗預算"],
+        "quickWins": ["設試點 2 週","雙指標看板"] },
+      { "title": "流程僵化",
+        "signals": ["文件過多","反應慢"],
+        "antidotes": ["精簡簽核層級","自動化報表"],
+        "quickWins": ["砍 1 層簽核","報表腳本"] },
+      { "title": "只看成本不看價值",
+        "signals": ["否決創新","短視"],
+        "antidotes": ["導入 ROI 模型與回收期","與商人共同評估"],
+        "quickWins": ["建立 ROI 模板","回收期儀表"] }
+    ]
+  },
+  {
+    "role": "star",
+    "scenes": [
+      { "title": "過度個人化風險",
+        "signals": ["人走茶涼","代言翻車"],
+        "antidotes": ["分散曝光/多載體","危機腳本"],
+        "quickWins": ["建立危機應對脚本","改為團隊帳號"] },
+      { "title": "只曝光不轉化",
+        "signals": ["互動高轉單低"],
+        "antidotes": ["與商人定義轉化路徑","賦能支持者接住需求"],
+        "quickWins": ["加 UTM 與 CTA","轉派到客服 SOP"] },
+      { "title": "能量耗竭",
+        "signals": ["產能忽高忽低","倦怠"],
+        "antidotes": ["內容/活動節奏化","健康與備援安排"],
+        "quickWins": ["月曆化檔期","安排備援主持"] }
+    ]
+  },
+  {
+    "role": "matchmaker",
+    "scenes": [
+      { "title": "關係廣但淺",
+        "signals": ["會議多成果少","被動引介"],
+        "antidotes": ["分級經營名單","季度共創主題"],
+        "quickWins": ["Top50 名單分級","共創圓桌"] },
+      { "title": "協調成本高",
+        "signals": ["往返多","決策慢"],
+        "antidotes": ["標準合約與價目","決策者優先接觸"],
+        "quickWins": ["建立標準 MOU","決策地圖"] },
+      { "title": "導入品質不穩",
+        "signals": ["供應商品質參差","口碑受損"],
+        "antidotes": ["KPI 與黑白名單","季度評鑑"],
+        "quickWins": ["建立黑白名單","季度績效評鑑"] }
+    ]
+  }
+]

@@ -1,0 +1,18 @@
+export const ROLES = [
+{ id: 'supporter', name: '支持者', color: 'bg-sky-100', icon: 'HandThumbUpIcon', intro: '善於協助與服務，強項是關係與信任。',
+keywords: ['協作','客服','社群','照護'] },
+{ id: 'accumulator',name: '積蓄者', color: 'bg-emerald-100', icon: 'BanknotesIcon', intro: '擅長資源管理與風險控管。',
+keywords: ['財務','系統化','節奏','長期'] },
+{ id: 'landlord', name: '地主', color: 'bg-amber-100', icon: 'HomeModernIcon', intro: '掌握資產與配置，重視穩定與租賃/平台。',
+keywords: ['資產','租賃','平台','掌控'] },
+{ id: 'technician', name: '技師', color: 'bg-indigo-100', icon: 'WrenchScrewdriverIcon', intro: '熱愛技術與修繕，重視可靠度。',
+keywords: ['工程','維運','品質','效率'] },
+{ id: 'merchant', name: '商人', color: 'bg-orange-100', icon: 'ShoppingBagIcon', intro: '交易與談判高手，善於找產品-市場契合。',
+keywords: ['銷售','通路','定價','轉化'] },
+{ id: 'creator', name: '創作者', color: 'bg-pink-100', icon: 'PencilSquareIcon', intro: '內容/設計/發想強，擅故事與審美。',
+keywords: ['內容','設計','品牌','敘事'] },
+{ id: 'star', name: '明星', color: 'bg-fuchsia-100', icon: 'SparklesIcon', intro: '個人影響力強，適合公開場合與代言。',
+keywords: ['公關','KOL','舞台','曝光'] },
+{ id: 'matchmaker', name: '媒合者', color: 'bg-teal-100', icon: 'UserGroupIcon', intro: '喜連結資源與人脈，撮合合作。',
+keywords: ['BD','夥伴','社交','整合'] },
+]
