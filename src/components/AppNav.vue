@@ -11,6 +11,8 @@
       <!-- 桌機導覽 -->
       <div class="hidden items-center gap-1 md:flex">
         <RouterLink :to="{ name: 'explore' }" class="nav-link" :class="{ 'is-active': isActive('/explore') }">探索</RouterLink>
+        <RouterLink :to="{ name: 'collab' }" class="nav-link" :class="{ 'is-active': isActive('/collab') }">組合</RouterLink>
+        <RouterLink :to="{ name: 'counterflow' }" class="nav-link" :class="{ 'is-active': isActive('/counterflow') }">逆流</RouterLink>
         <RouterLink :to="{ name: 'roles' }" class="nav-link" :class="{ 'is-active': isActive('/roles') }">角色</RouterLink>
         <RouterLink :to="{ name: 'guides' }" class="nav-link" :class="{ 'is-active': isActive('/guides') }">指南</RouterLink>
         <RouterLink :to="{ name: 'faq' }" class="nav-link" :class="{ 'is-active': isActive('/faq') }">FAQ</RouterLink>
