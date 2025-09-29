@@ -1,7 +1,7 @@
 talent-guide/
 ├─ .github
 |   └─ workflows/
-|       └─ deploy.yml
+|      └─ deploy.yml
 ├─ index.html
 ├─ package.json
 ├─ postcss.config.cjs
