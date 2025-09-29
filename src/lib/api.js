@@ -218,7 +218,10 @@ export async function deleteGuide(id) {
 }
 
 // ---- 一次性初始化 ----
+// 取代原本 IIFE 的 seed 區塊
 (function seed(){
-  if (!localStorage.getItem(LS.guides)) write(LS.guides, sampleGuides) // 首次有內容
+  if (!localStorage.getItem(LS.guides)) {
+    write(LS.guides, sampleGuides.map(g => ({ ...g, updatedAt: g.updatedAt || Date.now() })))
+  }
   if (!localStorage.getItem(LS.users)) write(LS.users, [])
-})()
+})();

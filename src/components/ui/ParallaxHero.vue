@@ -8,6 +8,8 @@
         <h1 class="text-5xl font-extrabold drop-shadow">{{ title }}</h1>
         <p class="mx-auto mt-3 max-w-2xl opacity-90">{{ subtitle }}</p>
         <div class="mt-8 flex justify-center gap-3">
+                <RouterLink class="btn-primary" to="/recommend">開始測驗</RouterLink>
+
           <slot name="actions" />
         </div>
       </div>

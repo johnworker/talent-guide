@@ -1,25 +1,30 @@
 <template>
-  <article class="card hover:shadow-glow transition relative">
-    <button v-if="guide" class="absolute right-3 top-3 rounded-full border bg-white/80 px-3 py-1 text-sm"
-            @click.stop="toggleFav(guide.id)">{{ isFav ? '★' : '☆' }}</button>
-    <template v-if="guide">
-      <h3 class="text-lg font-semibold">{{ guide.title }}</h3>
-      <p class="mt-1 line-clamp-3 text-slate-600" v-html="guide.content"></p>
-    </template>
-    <template v-else>
-      <div class="animate-pulse space-y-3">
-        <div class="h-5 w-2/3 rounded bg-slate-200"></div>
-        <div class="h-4 w-full rounded bg-slate-200"></div>
-        <div class="h-4 w-5/6 rounded bg-slate-200"></div>
+  <article class="group overflow-hidden rounded-2xl border bg-white/70 shadow-soft transition hover:shadow-glow">
+    <img v-if="g.cover" :src="g.cover" class="h-40 w-full object-cover" alt="" />
+    <div class="p-4">
+      <div class="flex items-start justify-between gap-2">
+        <h3 class="line-clamp-2 text-lg font-semibold">{{ g.title }}</h3>
+        <button class="rounded-full border p-2 text-slate-500 hover:text-primary" @click.stop="toggle(g.id)">
+          <span v-if="favSet.has(g.id)">★</span><span v-else>☆</span>
+        </button>
       </div>
-    </template>
+      <p class="mt-2 line-clamp-2 text-slate-600" v-html="g.content" />
+      <div class="mt-3 flex flex-wrap items-center gap-2 text-xs text-slate-500">
+        <RoleBadge v-for="r in g.roleIds" :key="r">#{{ roleName(r) }}</RoleBadge>
+        <span class="rounded-full bg-slate-100 px-2 py-0.5">{{ g.type }}</span>
+        <span class="rounded-full bg-slate-100 px-2 py-0.5">Lv. {{ g.level }}</span>
+        <span class="ml-auto">{{ g.readingTime }} 分鐘</span>
+      </div>
+    </div>
   </article>
 </template>
 <script setup>
-import { computed } from 'vue'
-import { useFavorites } from '@/composables/useFavorites'
-const props = defineProps({ guide:Object })
-const { isFavorite, toggle } = useFavorites('tg_fav_guides')
-const isFav = computed(()=> props.guide ? isFavorite(props.guide.id) : false)
-const toggleFav = (id)=> toggle(id)
+import RoleBadge from '@/components/ui/RoleBadge.vue'
+import { ROLES } from '@/lib/roles'
+import { ref } from 'vue'
+import useFavorites from '@/composables/useFavorites'
+
+const props = defineProps({ g: Object })
+const { favSet, toggle } = useFavorites()
+const roleName = (id) => ROLES.find(r=>r.id===id)?.name || id
 </script>

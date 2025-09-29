@@ -45,6 +45,12 @@ talent-guide/
     | |     |    ├─ Confetti.vue      # 輕量彩帶動畫（結果時播放）
     | |     |    ├─ PersonaChip.vue      # 角色膠囊（帶顏色與 icon）
     | |     |    ├─ TipCard.vue          # 小貼士卡片（標題/內文/行動）
+    | |     |    ├─ Accordion.vue
+    | |     |    ├─ Divider.vue
+    | |     |    ├─ RoleBadge.vue
+    | |     |    ├─ Icon.vue
+    | |     |    ├─ ParallaxHero.vue
+    | |     |    ├─ BackgroundLayer.vue
     | |     |    └─ Marquee.vue
     | |     ├─ charts/
     | |     |    └─ Radar.vue

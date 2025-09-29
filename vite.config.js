@@ -5,6 +5,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
   plugins: [vue()],
+  base: '/talent-guide/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

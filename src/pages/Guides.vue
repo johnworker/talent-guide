@@ -1,120 +1,152 @@
 <template>
   <div class="page">
     <div class="flex flex-wrap items-center justify-between gap-3">
-      <h1 class="text-2xl font-semibold">指南</h1>
-      <RouterLink to="/guides/new" class="btn-primary" v-if="authed">新增指南</RouterLink>
+      <h1 class="text-2xl font-bold tracking-tight">指南</h1>
+      <div class="flex items-center gap-2">
+        <RouterLink v-if="authed" to="/guides/new" class="btn-primary">新增指南</RouterLink>
+        <RouterLink to="/explore" class="btn-outline">探索主題</RouterLink>
+      </div>
     </div>
 
-    <!-- 篩選列 -->
-    <div class="mt-4 grid gap-3 md:grid-cols-4">
-      <input v-model="q" placeholder="搜尋標題或內文..." class="rounded-xl border p-3 md:col-span-2" />
+    <!-- 控制列 -->
+    <div class="mt-4 grid gap-3 md:grid-cols-[1fr,200px,200px]">
+      <input v-model="q" placeholder="搜尋標題/內文/標籤..." class="rounded-xl border p-3"/>
+
       <select v-model="role" class="rounded-xl border p-3">
-        <option value="">所有角色</option>
+        <option value="">全部角色</option>
         <option v-for="r in ROLES" :key="r.id" :value="r.id">{{ r.name }}</option>
       </select>
-      <select v-model="tag" class="rounded-xl border p-3">
-        <option value="">所有標籤</option>
-        <option v-for="t in tags" :key="t" :value="t">{{ t }}</option>
-      </select>
-      <select v-model="sort" class="rounded-xl border p-3">
-        <option value="latest">最新更新</option>
+
+      <select v-model="sortBy" class="rounded-xl border p-3">
+        <option value="updatedAt">最新更新</option>
         <option value="views">最多瀏覽</option>
         <option value="likes">最多喜歡</option>
       </select>
     </div>
 
-    <!-- 列表 -->
-    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      <div v-if="store.loading" class="sm:col-span-2 lg:col-span-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <div v-for="i in 6" :key="i" class="rounded-2xl border bg-white/60 p-5 animate-pulse h-40"></div>
-      </div>
-
-      <RouterLink v-for="g in pageItems" :key="g.id" :to="`/read/${g.id}`"
-                  class="card hover:shadow-glow relative">
-        <p class="text-lg font-semibold line-clamp-2">{{ g.title }}</p>
-        <div class="mt-2 line-clamp-3 text-slate-600" v-html="g.content"></div>
-
-        <div class="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
-          <div class="flex flex-wrap gap-1">
-            <span v-for="rid in g.roleIds" :key="rid" class="rounded bg-slate-100 px-2 py-0.5">#{{ id2name(rid) }}</span>
-            <span v-for="t in g.tags||[]" :key="t" class="rounded bg-emerald-50 px-2 py-0.5 text-emerald-700">#{{ t }}</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <button class="hover:opacity-80" @click.prevent="like(g)">👍 {{ g.likes||0 }}</button>
-            <span>👁️ {{ g.views||0 }}</span>
-            <button @click.prevent="toggleFav(g.id)" :class="isFav(g.id)?'text-rose-500':'text-slate-400'">★</button>
-          </div>
-        </div>
-      </RouterLink>
+    <!-- 標籤列 -->
+    <div class="mt-3 flex flex-wrap gap-2">
+      <button
+        v-for="t in allTags"
+        :key="t"
+        @click="toggleTag(t)"
+        :class="['px-3 py-1 rounded-full text-sm border transition',
+                 activeTags.has(t) ? 'bg-primary text-white border-primary' : 'bg-white/70']">
+        #{{ t }}
+      </button>
+      <button v-if="activeTags.size" class="btn-outline" @click="activeTags = new Set()">清除標籤</button>
     </div>
 
-    <!-- 空狀態 -->
-    <div v-if="!store.loading && !filtered.length" class="mt-8 text-center text-slate-500">
-      找不到符合的內容，試試其它關鍵字或條件。
+    <!-- 列表 -->
+    <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div
+        v-for="g in paged"
+        :key="g.id"
+        class="card hover:shadow-glow transition flex flex-col">
+        <p class="text-sm text-slate-500">{{ formatDate(g.updatedAt) }}</p>
+        <h3 class="mt-1 text-lg font-semibold line-clamp-1">{{ g.title }}</h3>
+        <div class="mt-2 text-slate-600 line-clamp-3" v-html="g.content"></div>
+
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span v-for="r in g.roleIds" :key="r" class="rounded-full border bg-white/70 px-2 py-0.5 text-xs">
+            {{ roleName(r) }}
+          </span>
+          <span v-for="t in g.tags || []" :key="t" class="rounded-full bg-slate-100 px-2 py-0.5 text-xs">#{{ t }}</span>
+        </div>
+
+        <div class="mt-4 flex items-center justify-between">
+          <div class="flex items-center gap-3 text-sm text-slate-500">
+            <span>👁️ {{ g.views || 0 }}</span>
+            <button class="underline" @click="like(g)">👍 {{ g.likes || 0 }}</button>
+          </div>
+          <div class="flex items-center gap-2">
+            <RouterLink v-if="authed" :to="`/guides/${g.id}/edit`" class="btn-outline">編輯</RouterLink>
+            <RouterLink :to="`/read/${g.id}`" class="btn-outline">閱讀</RouterLink>
+            <button class="btn-outline" @click="toggleFav(g.id)">{{ isFav(g.id) ? '★ 已收藏' : '☆ 收藏' }}</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- 分頁 -->
-    <div v-if="totalPages>1" class="mt-6 flex justify-center gap-2">
-      <button class="btn-outline" :disabled="page===1" @click="page--">上一頁</button>
-      <span class="rounded-xl border bg-white/70 px-4 py-2">第 {{ page }} / {{ totalPages }} 頁</span>
-      <button class="btn-outline" :disabled="page===totalPages" @click="page++">下一頁</button>
+    <div class="mt-6 flex items-center justify-center gap-2">
+      <button class="btn-outline" :disabled="page<=1" @click="page--">上一頁</button>
+      <span class="text-sm text-slate-500">第 {{ page }} / {{ totalPages }} 頁</span>
+      <button class="btn-outline" :disabled="page>=totalPages" @click="page++">下一頁</button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useGuideStore } from '@/stores/guides'
 import { useAuthStore } from '@/stores/auth'
 import { ROLES } from '@/lib/roles'
 import * as api from '@/lib/api'
-import useFavorites from '@/composables/useFavorites'
 
-const store = useGuideStore(); const auth = useAuthStore()
-const authed = computed(()=>auth.isAuthed)
+const store = useGuideStore()
+const auth = useAuthStore()
+const authed = computed(() => auth.isAuthed)
 
-// filters
-const q = ref(''); const role = ref(''); const tag = ref(''); const sort = ref('latest')
-const page = ref(1); const pageSize = 6
+const q = ref('')
+const role = ref('')
+const sortBy = ref('updatedAt')
+const page = ref(1)
+const pageSize = 9
+const activeTags = ref(new Set())
 
-// tags
-const tags = ref([])
-onMounted(async () => {
-  await store.fetch()
-  tags.value = await api.listTags()
+onMounted(() => store.fetch())
+
+const allTags = computed(() => {
+  const s = new Set()
+  store.items.forEach(g => (g.tags || []).forEach(t => s.add(t)))
+  return [...s].sort()
 })
 
-// 收藏
-const { isFav, toggle } = useFavorites()
-const toggleFav = (id)=> toggle(id)
+const roleName = rid => ROLES.find(r => r.id === rid)?.name || rid
+const formatDate = ts => new Date(ts).toLocaleDateString()
 
-// 名稱輔助
-const id2name = (id)=> ROLES.find(r=>r.id===id)?.name || id
-
-// like / view
-const like = async (g)=> {
-  await api.likeGuide(g.id)
-  // 同步本地 store
-  const item = store.items.find(x=>x.id===g.id)
-  if (item) item.likes = (item.likes||0)+1
+// 喜歡 +1（寫回 localStorage，簡化示範）
+async function like(g) {
+  await api.updateGuide(g.id, { likes: (g.likes || 0) + 1 })
+  await store.fetch()
 }
-watch(() => store.items, (list)=> list.forEach(g=> api.viewGuide(g.id)), { immediate:true })
 
-// 過濾/排序/分頁
+// 收藏（localStorage：tg_favs）
+const FKEY = 'tg_favs'
+const favSet = ref(new Set(JSON.parse(localStorage.getItem(FKEY) || '[]')))
+const isFav = id => favSet.value.has(id)
+function toggleFav(id){
+  if (favSet.value.has(id)) favSet.value.delete(id)
+  else favSet.value.add(id)
+  localStorage.setItem(FKEY, JSON.stringify([...favSet.value]))
+}
+
+function toggleTag(t){ activeTags.value.has(t) ? activeTags.value.delete(t) : activeTags.value.add(t) }
+
 const filtered = computed(() => {
-  const k = q.value.trim().toLowerCase()
-  let arr = store.items.filter(g => {
-    const hitText = !k || g.title.toLowerCase().includes(k) || (g.content||'').toLowerCase().includes(k)
-    const hitRole = !role.value || (g.roleIds||[]).includes(role.value)
-    const hitTag  = !tag.value || (g.tags||[]).includes(tag.value)
-    return hitText && hitRole && hitTag
-  })
-  if (sort.value==='views') arr.sort((a,b)=>(b.views||0)-(a.views||0))
-  else if (sort.value==='likes') arr.sort((a,b)=>(b.likes||0)-(a.likes||0))
-  else arr.sort((a,b)=> (b.updatedAt||0)-(a.updatedAt||0))
+  const kw = q.value.trim().toLowerCase()
+  const hasKw = g =>
+    !kw || g.title.toLowerCase().includes(kw) ||
+    (g.content || '').toLowerCase().includes(kw) ||
+    (g.tags || []).some(t => t.toLowerCase().includes(kw))
+  const hasRole = g => !role.value || (g.roleIds || []).includes(role.value)
+  const hasTags = g => !activeTags.value.size || (g.tags || []).some(t => activeTags.value.has(t))
+  return store.items.filter(g => hasKw(g) && hasRole(g) && hasTags(g))
+})
+
+const sorted = computed(() => {
+  const arr = [...filtered.value]
+  if (sortBy.value === 'updatedAt') arr.sort((a,b)=> (b.updatedAt||0)-(a.updatedAt||0))
+  if (sortBy.value === 'views')     arr.sort((a,b)=> (b.views||0)-(a.views||0))
+  if (sortBy.value === 'likes')     arr.sort((a,b)=> (b.likes||0)-(a.likes||0))
   return arr
 })
-const totalPages = computed(()=> Math.max(1, Math.ceil(filtered.value.length / pageSize)))
-watch([q, role, tag, sort], ()=> page.value = 1)
-const pageItems = computed(()=> filtered.value.slice((page.value-1)*pageSize, page.value*pageSize))
+
+const totalPages = computed(() => Math.max(1, Math.ceil(sorted.value.length / pageSize)))
+const paged = computed(() => {
+  page.value = Math.min(page.value, totalPages.value)
+  const start = (page.value - 1) * pageSize
+  return sorted.value.slice(start, start + pageSize)
+})
 </script>

@@ -1,59 +1,107 @@
 // src/router/index.js
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from "vue-router";
 
-// 頁面
-import Home from '@/pages/Home.vue'
-import Roles from '@/pages/Roles.vue'
-import RoleDetail from '@/pages/RoleDetail.vue'
-import Recommend from '@/pages/Recommend.vue'
-import Guides from '@/pages/Guides.vue'
-import GuideEditor from '@/pages/GuideEditor.vue'
-import Dashboard from '@/pages/Dashboard.vue'
-import Login from '@/pages/Login.vue'
-import Register from '@/pages/Register.vue'
-import NotFound from '@/pages/NotFound.vue'
-import Collab from '@/pages/Collab.vue'
-import Counterflow from '@/pages/Counterflow.vue'
+// 頁面匯入（大小寫請與檔名一致）
+import Home from "@/pages/Home.vue";
+import Roles from "@/pages/Roles.vue";
+import RoleDetail from "@/pages/RoleDetail.vue";
+import Recommend from "@/pages/Recommend.vue";
+import Guides from "@/pages/Guides.vue";
+import GuideEditor from "@/pages/GuideEditor.vue";
+import Dashboard from "@/pages/Dashboard.vue";
+import Login from "@/pages/Login.vue";
+import Register from "@/pages/Register.vue";
+import Explore from "@/pages/Explore.vue"; // ⬅️ 新增
+import FAQ from "@/pages/FAQ.vue"; // ⬅️ 新增
+import Read from "@/pages/Read.vue";
+import Collab from "@/pages/Collab.vue";
+import Counterflow from "@/pages/Counterflow.vue";
+import NotFound from "@/pages/NotFound.vue";
 
-
-import { useAuthStore } from '@/stores/auth'
+import { useAuthStore } from "@/stores/auth";
 
 const routes = [
-  { path: '/', name: 'home', component: Home, meta: { title: '首頁' } },
-  { path: '/roles', name: 'roles', component: Roles, meta: { title: '角色一覽' } },
-  { path: '/roles/:id', name: 'role-detail', component: RoleDetail, meta: { title: '角色解說' } },
-  { path: '/recommend', name: 'recommend', component: Recommend, meta: { title: '推薦測驗' } },
-  { path: '/guides', name: 'guides', component: Guides, meta: { title: '指南' } },
-  { path: '/guides/new', name: 'guide-new', component: GuideEditor, meta: { requiresAuth: true, title: '新增指南' } },
-  { path: '/guides/:id/edit', name: 'guide-edit', component: GuideEditor, meta: { requiresAuth: true, title: '編輯指南' } },
-  { path: '/dashboard', name: 'dashboard', component: Dashboard, meta: { requiresAuth: true, title: '我的' } },
-  { path: '/login', name: 'login', component: Login, meta: { guestOnly: true, title: '登入' } },
-  { path: '/register', name: 'register', component: Register, meta: { guestOnly: true, title: '註冊' } },
-  { path: '/:pathMatch(.*)*', name: '404', component: NotFound, meta: { title: '404' } },
-  { path: '/collab', name: 'collab', component: Collab, meta:{ title:'合作組合' } },
-  { path: '/counterflow', name: 'counterflow', component: Counterflow, meta:{ title:'逆流應對' } },
-]
+  { path: "/", name: "home", component: Home, meta: { title: "首頁" } },
+  {
+    path: "/collab",
+    name: "collab",
+    component: Collab,
+    meta: { title: "合作組合實驗室" },
+  },
+  {
+    path: "/counterflow",
+    name: "counterflow",
+    component: Counterflow,
+    meta: { title: "逆流應對指南" },
+  },
+  {
+    path: "/explore",
+    name: "explore",
+    component: Explore,
+    meta: { title: "探索主題" },
+  }, // ⬅️ 新增
+  { path: "/faq", name: "faq", component: FAQ, meta: { title: "常見問題" } }, // ⬅️ 新增
+  { path: "/roles", name: "roles", component: Roles },
+  { path: "/roles/:id", name: "role-detail", component: RoleDetail },
+  { path: "/recommend", name: "recommend", component: Recommend },
+  { path: "/guides", name: "guides", component: Guides },
+  {
+    path: "/read/:id",
+    name: "read",
+    component: Read,
+    meta: { title: "閱讀指南" },
+  },
+  {
+    path: "/guides/new",
+    name: "guide-new",
+    component: GuideEditor,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/guides/:id/edit",
+    name: "guide-edit",
+    component: GuideEditor,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/dashboard",
+    name: "dashboard",
+    component: Dashboard,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+    meta: { guestOnly: true },
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: Register,
+    meta: { guestOnly: true },
+  },
+  { path: "/:pathMatch(.*)*", name: "404", component: NotFound },
+];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL), // 如果有子目錄部署，這裡加 base，如 createWebHistory('/talent-guide/')
   routes,
-  scrollBehavior () { return { top: 0 } },
-})
+  scrollBehavior: () => ({ top: 0 }),
+});
 
 router.beforeEach((to) => {
-  const auth = useAuthStore()
-  if (to.meta && to.meta.requiresAuth && !auth.isAuthed) {
-    return { name: 'login', query: { redirect: to.fullPath } }
+  const auth = useAuthStore();
+  if (to.meta?.requiresAuth && !auth.isAuthed) {
+    return { name: "login", query: { redirect: to.fullPath } };
   }
-  if (to.meta && to.meta.guestOnly && auth.isAuthed) {
-    return { name: 'dashboard' }
+  if (to.meta?.guestOnly && auth.isAuthed) {
+    return { name: "dashboard" };
   }
-})
+});
 
 router.afterEach((to) => {
-  const t = (to.meta && to.meta.title) ? `${to.meta.title}｜TalentGuide` : 'TalentGuide'
-  document.title = t
-  document.title = (to.meta?.title ? `${to.meta.title}｜` : '') + 'TalentGuide'
-})
+  if (to.meta?.title) document.title = `${to.meta.title} | TalentGuide`;
+});
 
-export default router
+export default router;
