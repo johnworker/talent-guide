@@ -2,7 +2,7 @@
   <!-- HERO：視差主視覺 -->
   <Section>
     <ParallaxHero
-      img="/src/assets/hero.jpg"
+      img :src="heroUrl"
       title="找到你的天賦位置"
       subtitle="8 種角色 × 推薦測驗 × 實作指南 — 快速對齊你的工作與專案分工"
       />
@@ -150,6 +150,8 @@ import Metric from "@/components/ui/Metric.vue";
 import Testimonial from "@/components/ui/Testimonial.vue";
 import Marquee from "@/components/ui/Marquee.vue";
 import Icon from "@/components/ui/Icon.vue";
+import heroUrl from '@/assets/hero.jpg'   // ← 以模組方式載圖，Vite 會正確處理路徑
+
 
 // 已有 Guides.vue 的列表邏輯，直接當子元件使用
 import GuidesList from "@/pages/Guides.vue";

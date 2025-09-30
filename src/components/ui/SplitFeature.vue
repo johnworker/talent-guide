@@ -6,10 +6,18 @@
       <p class="mt-3 text-slate-600"><slot /></p>
       <div class="mt-4 flex gap-2"><slot name="actions" /></div>
     </div>
-    <img :src="img" alt="" class="aspect-[4/3] w-full rounded-2xl object-cover shadow-soft" />
+    <img :src="imgUrl" alt="" class="aspect-[4/3] w-full rounded-2xl object-cover shadow-soft" />
   </section>
 </template>
 <script setup>
-defineProps({ title:String, img:String, eyebrow:String })
-import narrativeUrl from '@/assets/narrative.jpg'
+import fallback from '@/assets/Narrative.jpg'
+
+const props = defineProps({
+  title: String,
+  eyebrow: String,
+  img: { type: String, default: '' }, // 傳 import 後的 url
+})
+
+const imgUrl = computed(() => props.img || fallback)
+
 </script>
