@@ -18,7 +18,7 @@
 </template>
 <script setup>
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import heroUrl from '@/assets/hero.jpg'
+import heroUrl from '../assets/hero.jpg'
 defineProps({ img:String, title:String, subtitle:String })
 const y = ref(0)
 const onScroll = () => { y.value = window.scrollY || 0 }

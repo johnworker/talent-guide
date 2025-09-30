@@ -2,7 +2,7 @@
   <!-- HERO：視差主視覺 -->
   <Section>
     <ParallaxHero
-      img="/public/hero.jpg"
+      img="/src/assets/hero.jpg"
       title="找到你的天賦位置"
       subtitle="8 種角色 × 推薦測驗 × 實作指南 — 快速對齊你的工作與專案分工"
       />
@@ -76,7 +76,7 @@
   <SplitFeature
     title="角色語言讓協作更快"
     eyebrow="方法論"
-    img="/public/Narrative.jpg"
+    img="/src/assets/Narrative.jpg"
   >
     把抽象能力轉成可對話的角色，團隊對齊成本更低；我們用題目幫你找到前三名，並用指南把「知道」變成「做到」。
     <template #actions>
