@@ -76,7 +76,7 @@
   <SplitFeature
     title="角色語言讓協作更快"
     eyebrow="方法論"
-    img="/src/assets/Narrative.jpg"
+    img :src="NarrativeUrl"
   >
     把抽象能力轉成可對話的角色，團隊對齊成本更低；我們用題目幫你找到前三名，並用指南把「知道」變成「做到」。
     <template #actions>
@@ -150,8 +150,8 @@ import Metric from "@/components/ui/Metric.vue";
 import Testimonial from "@/components/ui/Testimonial.vue";
 import Marquee from "@/components/ui/Marquee.vue";
 import Icon from "@/components/ui/Icon.vue";
-import heroUrl from '@/assets/hero.jpg'   // ← 以模組方式載圖，Vite 會正確處理路徑
-
+import heroUrl from '../assets/hero.jpg'   // ← 以模組方式載圖，Vite 會正確處理路徑
+import NarrativeUrl from '../assets/Narrative.jpg' // ← 以模組方式載圖，Vite 會正確處理路徑
 
 // 已有 Guides.vue 的列表邏輯，直接當子元件使用
 import GuidesList from "@/pages/Guides.vue";

@@ -10,14 +10,7 @@
   </section>
 </template>
 <script setup>
+defineProps({ title:String, img:String, eyebrow:String })
 import fallback from '@/assets/Narrative.jpg'
-
-const props = defineProps({
-  title: String,
-  eyebrow: String,
-  img: { type: String, default: '' }, // 傳 import 後的 url
-})
-
-const imgUrl = computed(() => props.img || fallback)
 
 </script>
