@@ -2,7 +2,7 @@
   <!-- HERO：視差主視覺 -->
   <Section>
     <ParallaxHero
-      img="/src/assets/hero.jpg"
+      img="/public/hero.jpg"
       title="找到你的天賦位置"
       subtitle="8 種角色 × 推薦測驗 × 實作指南 — 快速對齊你的工作與專案分工"
       />
@@ -76,7 +76,7 @@
   <SplitFeature
     title="角色語言讓協作更快"
     eyebrow="方法論"
-    img="narrativeUrl"
+    img="/public/Narrative.jpg"
   >
     把抽象能力轉成可對話的角色，團隊對齊成本更低；我們用題目幫你找到前三名，並用指南把「知道」變成「做到」。
     <template #actions>
@@ -150,7 +150,6 @@ import Metric from "@/components/ui/Metric.vue";
 import Testimonial from "@/components/ui/Testimonial.vue";
 import Marquee from "@/components/ui/Marquee.vue";
 import Icon from "@/components/ui/Icon.vue";
-import narrativeUrl from '@/assets/Narrative.jpg'
 
 // 已有 Guides.vue 的列表邏輯，直接當子元件使用
 import GuidesList from "@/pages/Guides.vue";
