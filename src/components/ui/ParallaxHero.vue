@@ -1,6 +1,6 @@
 <template>
   <section class="relative isolate overflow-hidden h-[480px]">
-    <img :src="heroUrl" alt="" class="absolute inset-0 h-full w-full object-cover"
+    <img :src="img" alt="" class="absolute inset-0 h-full w-full object-cover"
          :style="{ transform:`translateY(${y * 0.25}px)` }" />
     <div class="absolute inset-0 bg-black/30"></div>
     <div class="relative z-10 grid h-full place-items-center text-center text-white">
@@ -18,7 +18,7 @@
 </template>
 <script setup>
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import heroUrl from '../assets/hero.jpg'
+import img from '/src/assets/hero.jpg'
 defineProps({ img:String, title:String, subtitle:String })
 const y = ref(0)
 const onScroll = () => { y.value = window.scrollY || 0 }
